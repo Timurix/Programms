@@ -1,4 +1,4 @@
-//https://www.codewars.com/kata/54edbc7200b811e956000556
+//https://www.codewars.com/kata/5506b230a11c0aeab3000c1f
 //
 
 #include "pch.h"
@@ -6,25 +6,30 @@
 
 using namespace std;
 
-int count_sheep(vector<bool> arr)
+class Evaporator
 {
-	int n = 0;
-	for (int i = 0; i < arr.size(); i++)
+
+public:
+
+	static int evaporator(double content, double evap_per_day, double threshold)
 	{
-		if (arr[i] != false && arr[i] != 0)
-			n++;
+		int days = 0;
+		double copy = content;
+		while (content >= copy * threshold / 100)
+		{
+			content = content - content * evap_per_day / 100;
+			days++;
+		}
+		return days;
+
 	}
-	return n;
-}
+};
 
 int main()
 {
-	vector<bool> sheep = [true, true, true, false,
-		true, true, true, true,
-		true, false, true, false,
-		true, false, false, true,
-		true, true, true, true,
-		false, false, true, true; ]
-		cout << count_sheep(sheep);
+	Evaporator e;
+	cout << e.evaporator(10, 10, 10);
+	
+	
 	return 0;
 }
